@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "commonjs",
+    "module": "Node16",              // ✅ CHANGE THIS
+    "moduleResolution": "Node16",    // ✅ KEEP THIS
     "lib": ["ES2020"],
     "types": ["node"],
-    "moduleResolution": "node16",   // ✅ CHANGE THIS
+    "ignoreDeprecations": "6.0",
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
