@@ -10,7 +10,7 @@ import { sendError } from './utils/response';
 
 const app = express();
 
-// ─── Security middleware ────────────────────────────────────────
+// Security middleware
 app.use(helmet());
 app.use(
   cors({
@@ -20,7 +20,7 @@ app.use(
 );
 app.use(express.json());
 
-// ─── Routes ────────────────────────────────────────────────────
+// Routes
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok', env: env.NODE_ENV });
 });
@@ -28,12 +28,12 @@ app.get('/health', (_req, res) => {
 app.use('/auth', authRoutes);
 app.use('/tasks', taskRoutes);
 
-// ─── 404 handler ───────────────────────────────────────────────
+// 404 handler
 app.use((_req, res) => {
   sendError(res, 'Route not found', 404);
 });
 
-// ─── Global error handler ──────────────────────────────────────
+// Global error handler
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.error('[Error]', err.message);
   sendError(
