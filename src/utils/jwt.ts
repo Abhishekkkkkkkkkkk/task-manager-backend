@@ -10,7 +10,7 @@ export interface TokenPayload {
 // What comes back when we verify a token
 export interface VerifiedToken extends JwtPayload, TokenPayload {}
 
-// ─── Generate tokens ───────────────────────────────────────────
+// Generate tokens
 
 export const generateAccessToken = (payload: TokenPayload): string => {
   const options: SignOptions = {
@@ -26,7 +26,7 @@ export const generateRefreshToken = (payload: TokenPayload): string => {
   return jwt.sign(payload, env.JWT_REFRESH_SECRET, options);
 };
 
-// ─── Verify tokens ─────────────────────────────────────────────
+// Verify tokens
 
 export const verifyAccessToken = (token: string): VerifiedToken => {
   try {
@@ -43,45 +43,3 @@ export const verifyRefreshToken = (token: string): VerifiedToken => {
     throw new Error('Invalid or expired refresh token');
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import jwt from 'jsonwebtoken';
-
-// const ACCESS_SECRET = process.env.JWT_ACCESS_SECRET!;
-// const REFRESH_SECRET = process.env.JWT_REFRESH_SECRET!;
-
-// export interface TokenPayload {
-//   userId: string;
-//   email: string;
-// }
-
-// export const generateAccessToken = (payload: TokenPayload): string => {
-//   return jwt.sign(payload, ACCESS_SECRET, {
-//     expiresIn: process.env.JWT_ACCESS_EXPIRES_IN || '15m',
-//   });
-// };
-
-// export const generateRefreshToken = (payload: TokenPayload): string => {
-//   return jwt.sign(payload, REFRESH_SECRET, {
-//     expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d',
-//   });
-// };
-
-// export const verifyAccessToken = (token: string): TokenPayload => {
-//   return jwt.verify(token, ACCESS_SECRET) as TokenPayload;
-// };
-
-// export const verifyRefreshToken = (token: string): TokenPayload => {
-//   return jwt.verify(token, REFRESH_SECRET) as TokenPayload;
-// };
