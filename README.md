@@ -7,8 +7,8 @@ A secure, production-ready REST API for the TaskFlow Task Management System. Bui
 ## Live API
 
 ```
-Production: https://your-app.onrender.com
-Health Check: https://your-app.onrender.com/health
+Production: https://task-manager-backend-8tk3.onrender.com
+Health Check: https://task-manager-backend-8tk3.onrender.com/health
 ```
 
 > Replace with your actual Render URL after deploying.
@@ -227,7 +227,7 @@ User  ──<  RefreshToken   one user → many refresh tokens
 ### Base URL
 ```
 Local:      http://localhost:4000
-Production: https://your-app.onrender.com
+Production: https://task-manager-backend-8tk3.onrender.com
 ```
 
 ### Standard Response Format
@@ -265,8 +265,8 @@ Every response follows this shape:
 ```json
 // Request body
 {
-  "name": "Jane Doe",
-  "email": "jane@example.com",
+  "name": "Your Name",
+  "email": "yourname@example.com",
   "password": "password123"
 }
 
@@ -276,8 +276,8 @@ Every response follows this shape:
   "data": {
     "user": {
       "id": "clx123abc",
-      "name": "Jane Doe",
-      "email": "jane@example.com",
+      "name": "Your Name",
+      "email": "yourname@example.com",
       "createdAt": "2026-04-05T10:00:00.000Z"
     },
     "accessToken": "eyJhbGciOiJIUzI1NiJ9...",
@@ -297,7 +297,7 @@ Every response follows this shape:
 ```json
 // Request body
 {
-  "email": "jane@example.com",
+  "email": "yourname@example.com",
   "password": "password123"
 }
 
