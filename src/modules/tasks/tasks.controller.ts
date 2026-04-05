@@ -5,7 +5,7 @@ import { taskQuerySchema } from './tasks.schema';
 
 const tasksService = new TasksService();
 
-// ─── GET /tasks ────────────────────────────────────────────────
+// GET /tasks 
 export const getTasks = async (
   req: Request,
   res: Response
@@ -30,13 +30,13 @@ export const getTasks = async (
   }
 };
 
-// ─── GET /tasks/:id ────────────────────────────────────────────
+// GET /tasks/:id
 export const getTask = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    // ✅ Fix: extract id as string — req.params values are always strings
+    // Fix: extract id as string - req.params values are always strings
     const id = req.params.id as string;
 
     const task = await tasksService.getTaskById(id, req.user!.userId);
@@ -47,7 +47,7 @@ export const getTask = async (
   }
 };
 
-// ─── POST /tasks ───────────────────────────────────────────────
+// POST /tasks
 export const createTask = async (
   req: Request,
   res: Response
@@ -62,13 +62,13 @@ export const createTask = async (
   }
 };
 
-// ─── PATCH /tasks/:id ──────────────────────────────────────────
+// PATCH /tasks/:id
 export const updateTask = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    // ✅ Fix: extract id as string
+    // Fix: extract id as string
     const id = req.params.id as string;
 
     const task = await tasksService.updateTask(id, req.user!.userId, req.body);
@@ -80,13 +80,13 @@ export const updateTask = async (
   }
 };
 
-// ─── DELETE /tasks/:id ─────────────────────────────────────────
+// DELETE /tasks/:id
 export const deleteTask = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    // ✅ Fix: extract id as string
+    // Fix: extract id as string
     const id = req.params.id as string;
 
     await tasksService.deleteTask(id, req.user!.userId);
@@ -98,13 +98,13 @@ export const deleteTask = async (
   }
 };
 
-// ─── PATCH /tasks/:id/toggle ───────────────────────────────────
+// PATCH /tasks/:id/toggle
 export const toggleTask = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    // ✅ Fix: extract id as string
+    // Fix: extract id as string
     const id = req.params.id as string;
 
     const task = await tasksService.toggleTask(id, req.user!.userId);
@@ -115,65 +115,3 @@ export const toggleTask = async (
     sendError(res, message, statusCode);
   }
 };
-
-
-
-
-
-
-
-
-
-// import { Request, Response } from 'express';
-// import { TasksService } from './tasks.service';
-// import { taskQuerySchema } from './tasks.schema';
-// import { sendSuccess, sendError } from '../../utils/response';
-
-// const tasksService = new TasksService();
-
-// export const getTasks = async (req: Request, res: Response) => {
-//   const query = taskQuerySchema.parse(req.query);
-//   const { tasks, meta } = await tasksService.getTasks(req.user!.userId, query);
-//   sendSuccess(res, tasks, 200, meta);
-// };
-
-// export const getTask = async (req: Request, res: Response) => {
-//   try {
-//     const task = await tasksService.getTaskById(req.params.id, req.user!.userId);
-//     sendSuccess(res, task);
-//   } catch {
-//     sendError(res, 'Task not found', 404);
-//   }
-// };
-
-// export const createTask = async (req: Request, res: Response) => {
-//   const task = await tasksService.createTask(req.user!.userId, req.body);
-//   sendSuccess(res, task, 201);
-// };
-
-// export const updateTask = async (req: Request, res: Response) => {
-//   try {
-//     const task = await tasksService.updateTask(req.params.id, req.user!.userId, req.body);
-//     sendSuccess(res, task);
-//   } catch {
-//     sendError(res, 'Task not found', 404);
-//   }
-// };
-
-// export const deleteTask = async (req: Request, res: Response) => {
-//   try {
-//     await tasksService.deleteTask(req.params.id, req.user!.userId);
-//     sendSuccess(res, { message: 'Task deleted' });
-//   } catch {
-//     sendError(res, 'Task not found', 404);
-//   }
-// };
-
-// export const toggleTask = async (req: Request, res: Response) => {
-//   try {
-//     const task = await tasksService.toggleTask(req.params.id, req.user!.userId);
-//     sendSuccess(res, task);
-//   } catch {
-//     sendError(res, 'Task not found', 404);
-//   }
-// };
